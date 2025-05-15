@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Modified from https://github.com/BreadOnPenguins/scripts/blob/master/record
+record() {
+  # Toggle on mic
+  #amixer set Capture toggle
+
+  # ffmpeg -s 1920x1200 -f x11grab -r 30 -i :0.0+1920,0 -c:v h264 -qp 0 "$HOME/video_$(date '+%a__%b%d__%H_%M_%S').mkv" &
+
+  # Generic command to record at your screen dimensions
+  ffmpeg -s "$(xdpyinfo | awk '/dimensions/{print $2}')" -f x11grab -r 30 -i :0.0 -c:v h264 -qp 0 "$HOME/Videos/video_$(date '+%m-%d-%y_%T').mkv" &
+  echo $! > /tmp/recpid
+
+  # Specify alsa device with hw:0 etc.
+  # Filters audio noise with noise floor
+  #ffmpeg -f alsa -i default -af "afftdn=nf=-75" "$HOME/Videos/audio_$(date '+%a__%b%d__%H_%M_%S').wav" &
+  #echo $! > /tmp/audpid
+
+  echo "Rec •" > ~/.config/awesome/recordicon
+
+  notify-send -t 1000 -h string:bgcolor:#a3be8c "Recording started"
+  }
+
+end() {
+  kill -15 "$(cat /tmp/recpid)" && rm -f /tmp/recpid 
+
+  #amixer set Capture toggle
+
+  echo "•" > ~/.config/awesome/recordicon
+
+  notify-send -t 1000 -h string:bgcolor:#bf616a "Recording ended"
+  }
+
+# If the recording pid exists, end recording. If not, start recording
+([[ -f /tmp/recpid ]] && end && exit 0) || record

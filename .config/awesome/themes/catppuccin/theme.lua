@@ -14,7 +14,7 @@ theme.font = "HACK Nerd Font Bold 12"
 theme.battery_font = "HACK Nerd Font Bold 9"
 
 theme.useless_gap = dpi(3)
-theme.border_width = dpi(2)
+theme.border_width = dpi(3)
 
 theme.black = "#1e1e28"
 theme.deep_black = "#1b1923"
@@ -28,7 +28,7 @@ theme.green = "#b3e1a3"
 theme.blue = "#a4b9ef"
 theme.purple = "#c6aae8"
 theme.grey = "#6e6c7c"
-theme.light_grey = "#bbbbbb"
+theme.light_grey = "#999999"
 
 theme.bg_normal = theme.black
 theme.bg_focus = theme.deep_black
@@ -36,17 +36,15 @@ theme.bg_urgent = theme.white
 theme.bg_minimize = theme.grey
 theme.bg_systray = theme.black
 
-theme.fg_normal = theme.white
-theme.fg_focus = theme.purple
-theme.fg_urgent = theme.red
+theme.fg_normal = theme.blue
+theme.fg_focus = theme.light_white
+theme.fg_urgent = theme.purple
 theme.fg_minimize = theme.light_white
 
-theme.border_normal = theme.grey
+theme.border_normal = theme.light_white
 theme.border_focus = theme.blue
 theme.border_marked = theme.purple
 
-theme.taglist_normal = theme.purple
-theme.taglist_focus = theme.white
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:

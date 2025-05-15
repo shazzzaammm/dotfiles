@@ -11,6 +11,7 @@ local wibox = require("wibox")
 local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
+local dpi = require("beautiful.xresources").apply_dpi
 local chosen_theme = "catppuccin"
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
@@ -18,9 +19,6 @@ beautiful.init(theme_path)
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
--- require("awful.hotkeys_popup.keys")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -69,7 +67,7 @@ local editor = "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 local app_runner_cmd = "/home/k/.config/rofi/launchers/type-1/launcher.sh"
 local power_menu_cmd = "/home/k/.config/rofi/powermenu/type-3/powermenu.sh"
-local screenshot_cmd = "/usr/local/bin/screenshot"
+local screenshot_cmd = "/home/k/.local/bin/screenshot"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -200,8 +198,8 @@ local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 local calendar = calendar_widget({
 	placement = "center",
 	start_sunday = true,
+	theme = "catppuccin",
 })
-
 local vol = lain.widget.alsa({
 	timeout = 1,
 	settings = function()
@@ -212,16 +210,16 @@ local vol = lain.widget.alsa({
 		if volume_now.status == "off" then
 			level = ""
 			icon = "婢"
-			color = beautiful.pink
+			color = beautiful.fg_normal
 		else
 			level = level .. "%"
 			icon = "奔 "
-			color = beautiful.orange
+			color = beautiful.fg_normal
 		end
 		widget:set_markup(markup.fontfg(font, color, icon .. level))
 	end,
 })
-
+--[[
 local cpu = lain.widget.cpu({
 	timeout = 1,
 	settings = function()
@@ -235,14 +233,28 @@ local mem = lain.widget.mem({
 		widget:set_markup(markup.fontfg(beautiful.font, beautiful.blue, " " .. mem_now.perc .. "%"))
 	end,
 })
-
-local systray = wibox.widget.systray()
+--]]
+-- local systray = wibox.widget.systray()
 
 local mpris = require("themes.default.mpris")
-local mpd = require("themes.default.mpdarc")
+-- local mpd = require("themes.default.mpdarc")
 local spacer = wibox.widget.textbox("")
 spacer.markup = '<span foreground="' .. beautiful.light_grey .. '"> | </span>'
 
+local record_widget = wibox.widget.textbox("")
+
+record_widget.update = function()
+	awful.spawn.easy_async_with_shell("sleep .1; cat ~/.config/awesome/recordicon", function(out)
+		record_widget.markup = '<span foreground="' .. beautiful.fg_normal .. '">' .. out .. "</span>"
+	end)
+end
+record_widget:buttons((gears.table.join(awful.button({}, 1, function()
+	-- Call script to toggle recording
+	awful.spawn.with_shell("~/.local/bin/record")
+	record_widget.update()
+end))))
+
+record_widget.update()
 -- Icons for tags
 local tag1 = "  "
 local tag2 = " 󰌢 "
@@ -347,7 +359,11 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "top", screen = s })
+	s.mywibox = awful.wibox({
+		screen = s,
+		border_color = beautiful.blue,
+		border_width = beautiful.border_width,
+	})
 
 	-- Add widgets to the wibox
 
@@ -364,25 +380,23 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			record_widget,
+			spacer,
 			vol,
 			spacer,
 			battery({
 				font = beautiful.font,
 				show_current_level = true,
 				display_notification = true,
-				text_color = beautiful.green,
 			}),
 			spacer,
 			brightness({
-				program = "light",
+				program = "xbacklight",
 				type = "icon_and_text",
 				timeout = 1,
 				percentage = true,
-				text_color = beautiful.yellow,
 			}),
-			-- spacer,
-			-- mpris(),
-			--spacer,
+			spacer,
 			-- s.mylayoutbox,
 		},
 	})
@@ -452,17 +466,17 @@ globalkeys = gears.table.join(
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		awful.spawn("pactl -- set-sink-volume @DEFAULT_SINK@ +5%", false)
 		vol.update()
-	end, { description = "increase volume", group = "multimedia" }),
+	end, { description = "brightness up", group = "multimedia" }),
 	awful.key({}, "XF86MonBrightnessDown", function()
-		brightness.update()
-	end, { description = "increase volume", group = "multimedia" }),
+		brightness.dec(10)
+	end, { description = "brightness down", group = "multimedia" }),
 	awful.key({}, "XF86MonBrightnessUp", function()
-		brightness.update()
-	end, { description = "increase volume", group = "multimedia" }),
+		brightness.inc(10)
+	end, { description = "volume up", group = "multimedia" }),
 	awful.key({}, "XF86AudioLowerVolume", function()
 		awful.spawn("pactl -- set-sink-volume @DEFAULT_SINK@ -5%", false)
 		vol.update()
-	end, { description = "increase volume", group = "multimedia" }),
+	end, { description = "volume down", group = "multimedia" }),
 
 	-- Layout hotkeys
 	awful.key({ modkey }, "l", function()
@@ -694,7 +708,9 @@ awful.rules.rules = {
 	},
 
 	-- Add titlebars to and dialogs
-	{ rule_any = { type = { "dialog" } }, properties = { titlebars_enabled = true } },
+	-- { rule_any = { type = { "dialog" } }, properties = { titlebars_enabled = true } },
+	-- Remove titlebars from everything
+	{ rule_any = {}, properties = { titlebars_enabled = false } },
 }
 -- }}}
 
@@ -713,6 +729,10 @@ end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
+	-- Ignore titlebars if disabled
+	if not c.titlebars_enabled then
+		return
+	end
 	-- buttons for the titlebar
 	local buttons = gears.table.join(
 		awful.button({}, 1, function()
@@ -764,6 +784,21 @@ client.connect_signal("property::floating", function(c)
 		awful.titlebar.hide(c)
 	end
 end)
+
+--[[
+-- No borders when rearranging only 1 non-floating or maximized client
+screen.connect_signal("arrange", function(s)
+	local only_one = #s.tiled_clients == 1
+	for _, c in pairs(s.clients) do
+		if only_one and not c.floating or c.maximized then
+			c.border_width = 0
+		else
+			c.border_width = beautiful.border_width -- your border width
+		end
+	end
+end)
+--]]
+
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
 end)
