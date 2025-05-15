@@ -2,7 +2,6 @@
 none at the moment (it isnt pretty enough yet)
 
 # Stuff
-<br>
 - Awesome Window Manager
 - Better Discord
 - Better Lockscreen
@@ -19,4 +18,5 @@ none at the moment (it isnt pretty enough yet)
 - Yazi
 - Bat
 - Delta
+- Glow
 - Bash scripts that i use
