@@ -14,7 +14,7 @@ theme.font = "HACK Nerd Font Bold 12"
 theme.battery_font = "HACK Nerd Font Bold 9"
 
 theme.useless_gap = dpi(3)
-theme.border_width = dpi(3)
+theme.border_width = dpi(2)
 
 theme.black = "#1e1e28"
 theme.deep_black = "#1b1923"

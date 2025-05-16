@@ -105,6 +105,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Use yazi to cd along with the regular yazi stuff
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -113,6 +114,7 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -124,7 +126,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# idk
+# Add cargo to the path
 . "$HOME/.cargo/env"
 
 # path updating

@@ -361,8 +361,8 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Create the wibox
 	s.mywibox = awful.wibox({
 		screen = s,
-		border_color = beautiful.blue,
-		border_width = beautiful.border_width,
+		--		border_color = beautiful.blue,
+		--		border_width = beautiful.border_width,
 	})
 
 	-- Add widgets to the wibox
@@ -827,6 +827,7 @@ local autostart_apps = {
 	"picom -b",
 	--	"~/.config/polybar/launch.sh",
 	"xfce4-power-manager",
+	"source ~/.bashrc",
 }
 for i, app in pairs(autostart_apps) do
 	awful.spawn.with_shell(app)
