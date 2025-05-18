@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Make temp file
+tmpfile=$(mktemp /tmp/shotscreen.XXXXXXXX.png)
+
+# Take a screenshot
+import -window root $tmpfile
+
+# Open screenshot
+# sxiv -bfZN shotscreen $tmpfile
+# qimgv $tmpfile
+feh $tmpfile -F
+
+rm -f $tmpfile

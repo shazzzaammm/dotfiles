@@ -60,14 +60,15 @@ end
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "~/.local/kitty.app/bin/kitty"
-local browser = "firefox"
-local file_explorer = "yazi"
-local file_explorer_cmd = terminal .. " " .. file_explorer
+local browser = "librewolf"
 local editor = "nvim"
 local editor_cmd = terminal .. " -e " .. editor
+local file_explorer = "yazi"
+local file_explorer_cmd = terminal .. " " .. file_explorer
 local app_runner_cmd = "/home/k/.config/rofi/launchers/type-1/launcher.sh"
 local power_menu_cmd = "/home/k/.config/rofi/powermenu/type-3/powermenu.sh"
 local screenshot_cmd = "/home/k/.local/bin/screenshot"
+local zoom_cmd = "/home/k/.local/bin/zoom"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -445,14 +446,17 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", function()
 		awful.spawn.with_shell(browser)
 	end, { description = "open the browser", group = "launcher" }),
-	awful.key({ modkey }, "e", function()
-		awful.spawn.with_shell(file_explorer_cmd)
-	end, { description = "open the file explorer", group = "launcher" }),
 	awful.key({ modkey }, "r", function()
 		awful.spawn.with_shell(app_runner_cmd)
 	end, { description = "run prompt", group = "launcher" }),
+	awful.key({ modkey }, "e", function()
+		awful.spawn.with_shell(file_explorer_cmd)
+	end, { description = "open the file explorer", group = "launcher" }),
 
 	-- Media hotkeys
+	awful.key({ "Control" }, "1", function()
+		awful.spawn.with_shell(zoom_cmd)
+	end, { description = "zoom into desktop", group = "multimedia" }),
 	awful.key({ modkey, "Shift" }, "s", function()
 		awful.spawn.with_shell(screenshot_cmd)
 	end, { description = "screenshot", group = "multimedia" }),
@@ -827,7 +831,7 @@ local autostart_apps = {
 	"picom -b",
 	--	"~/.config/polybar/launch.sh",
 	"xfce4-power-manager",
-	"source ~/.bashrc",
+	"/usr/bin/setxkbmap -option 'caps:escape'",
 }
 for i, app in pairs(autostart_apps) do
 	awful.spawn.with_shell(app)
