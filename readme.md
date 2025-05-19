@@ -1,9 +1,8 @@
 # Screenshots
-![Spotify with Cava](./Screenshots/music.png)
-![Rofi](./Screenshots/rofi.png)
-![Stuff](./Screenshots/stuff.png)
 ![Neovim with Bottom](./Screenshots/nvim_bottom.png)
-![Power Menu](./Screenshots/powermenu.png)
+![Spotify with Cava](./Screenshots/music.png)
+![Stuff](./Screenshots/stuff.png)
+![Rofi](./Screenshots/rofi.png)
 
 # Stuff
 - Awesome Window Manager
