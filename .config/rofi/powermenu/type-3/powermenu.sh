@@ -64,6 +64,7 @@ run_cmd() {
 			mpc -q pause
 			amixer set Master mute
 			systemctl suspend
+			lock_session
 		elif [[ $1 == '--logout' ]]; then
 			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
 				openbox --exit
@@ -82,6 +83,15 @@ run_cmd() {
 	fi
 }
 
+# Lock (to not repeat it again)
+lock_session() {
+		if [[ -x "$HOME/.local/bin/betterlockscreen" ]]; then
+			betterlockscreen -l
+		elif [[ -x '/usr/bin/i3lock' ]]; then
+			i3lock
+		fi
+}
+
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
@@ -92,11 +102,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x "$HOME/.local/bin/betterlockscreen" ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+		lock_session
         ;;
     $suspend)
 		run_cmd --suspend
