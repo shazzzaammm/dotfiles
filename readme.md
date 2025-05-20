@@ -23,3 +23,7 @@
 - Delta
 - Glow
 - Bash scripts that i use
+
+# Todo
+- Seperate rc.lua to be more modular
+- Fix neovim config to allow me to program in rust (idk why it doesnt work)

@@ -6,29 +6,44 @@ local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
-local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
+local themes_path = os.getenv("HOME") .. "/.config/awesome/themes/"
 
 local theme = {}
 
-theme.font = "sans 8"
+theme.font = "HACK Nerd Font Bold 12"
+theme.battery_font = "HACK Nerd Font Bold 9"
 
-theme.bg_normal = "#222222"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#ff0000"
-theme.bg_minimize = "#444444"
-theme.bg_systray = theme.bg_normal
+theme.useless_gap = dpi(3)
+theme.border_width = dpi(3)
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.black = "#1e1e28"
+theme.deep_black = "#1b1923"
+theme.white = "#d7dae0"
+theme.light_white = "#fafafa"
+theme.pink = "#f0afe1"
+theme.red = "#e28c8c"
+theme.orange = "#f9c096"
+theme.yellow = "#eadda0"
+theme.green = "#b3e1a3"
+theme.blue = "#a4b9ef"
+theme.purple = "#c6aae8"
+theme.grey = "#6e6c7c"
+theme.light_grey = "#999999"
 
-theme.useless_gap = dpi(5)
-theme.border_width = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus = "#535d6c"
-theme.border_marked = "#91231c"
+theme.bg_normal = theme.black
+theme.bg_focus = theme.deep_black
+theme.bg_urgent = theme.white
+theme.bg_minimize = theme.grey
+theme.bg_systray = theme.black
+
+theme.fg_normal = theme.blue
+theme.fg_focus = theme.light_white
+theme.fg_urgent = theme.purple
+theme.fg_minimize = theme.light_white
+
+theme.border_normal = theme.light_white
+theme.border_focus = theme.blue
+theme.border_marked = theme.purple
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,12 +59,19 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+--[[
+local taglist_square_size = dpi(10)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
-
+theme.taglist_disable_icon = true
+--]]
 -- Variables set for theming notifications:
--- notification_font
+theme.notification_font = "Hack Nerd Font 12"
+theme.notification_margin = dpi(10)
+theme.notification_border_color = theme.border_normal
+theme.notification_border_width = theme.border_width
+theme.notification_icon_size = dpi(60)
+
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
@@ -64,7 +86,6 @@ theme.menu_width = dpi(100)
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
 
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path .. "default/titlebar/close_normal.png"
@@ -118,7 +139,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+theme.icon_theme = "/usr/share/icons/Arc"
 
 return theme
 

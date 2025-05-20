@@ -12,7 +12,7 @@ local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
-local chosen_theme = "catppuccin"
+local chosen_theme = "default"
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 -- Notification library
