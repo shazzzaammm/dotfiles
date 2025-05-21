@@ -220,25 +220,7 @@ local vol = lain.widget.alsa({
 		widget:set_markup(markup.fontfg(font, color, icon .. level))
 	end,
 })
---[[
-local cpu = lain.widget.cpu({
-	timeout = 1,
-	settings = function()
-		widget:set_markup(markup.fontfg(beautiful.font, beautiful.yellow, " " .. cpu_now.usage .. "%"))
-	end,
-})
 
-local mem = lain.widget.mem({
-	timeout = 1,
-	settings = function()
-		widget:set_markup(markup.fontfg(beautiful.font, beautiful.blue, " " .. mem_now.perc .. "%"))
-	end,
-})
---]]
--- local systray = wibox.widget.systray()
-
-local mpris = require("themes.default.mpris")
--- local mpd = require("themes.default.mpdarc")
 local spacer = wibox.widget.textbox("")
 spacer.markup = '<span foreground="' .. beautiful.light_grey .. '"> | </span>'
 
@@ -256,6 +238,7 @@ record_widget:buttons((gears.table.join(awful.button({}, 1, function()
 end))))
 
 record_widget.update()
+
 -- Icons for tags
 local tag1 = "  "
 local tag2 = " 󰌢 "

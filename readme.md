@@ -5,7 +5,7 @@
 ![Rofi](./Screenshots/rofi.png)
 
 # Stuff
-- Awesome Window Manager
+- Awesomewm
 - Better Discord
 - Better Lockscreen
 - Bottom
