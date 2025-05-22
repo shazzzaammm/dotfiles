@@ -15,7 +15,6 @@
 - Neovim
 - Nitrogen
 - Picom
-- Polybar (not using it right now)
 - Rofi
 - Spicetify
 - Yazi

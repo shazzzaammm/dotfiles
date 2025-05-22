@@ -420,7 +420,7 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", function()
 		awful.spawn.with_shell(power_menu_cmd)
-	end, { description = "quit awesome", group = "awesome" }),
+	end, { description = "open power menu", group = "awesome" }),
 
 	-- Launchers hotkeys
 	awful.key({ modkey }, "Return", function()
