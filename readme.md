@@ -1,8 +1,12 @@
-# Screenshots
-![Neovim with Bottom](./Screenshots/nvim_bottom.png)
-![Spotify with Cava](./Screenshots/music.png)
-![Stuff](./Screenshots/stuff.png)
-![Rofi](./Screenshots/rofi.png)
+<details>
+    <summary>Screenshots</summary>
+
+    ![Neovim with Bottom](./Screenshots/nvim_bottom.png)
+    ![Spotify with Cava](./Screenshots/music.png)
+    ![Stuff](./Screenshots/stuff.png)
+    ![Rofi](./Screenshots/rofi.png)
+
+</details>
 
 # Stuff
 - Awesomewm
