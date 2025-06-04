@@ -8,6 +8,8 @@
 
 </details>
 
+# Description
+Honestly 99% of every theme i have is catppuccin macchiato or mocha, so if you want something similar for an app check [the catppuccin page](https://github.com/catppuccin/catppuccin) and yoink the colors from there :3
 # Stuff
 - Awesomewm
 - Better Discord
@@ -25,6 +27,7 @@
 - Bat
 - Delta
 - Glow
+- tt (typing test)
 - Bash scripts that i use
 
 # Todo
