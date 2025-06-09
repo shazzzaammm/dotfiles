@@ -127,7 +127,9 @@ if ! shopt -oq posix; then
 fi
 
 # Add cargo to the path
-. "$HOME/.cargo/env"
+if [ -f ~/.cargo/env ]; then
+  . "$HOME/.cargo/env"
+fi
 
 # path updating
 export PATH=$PATH:/$HOME/Path_Programs
@@ -135,7 +137,9 @@ export PATH="$PATH:/home/k/.local/bin"
 export PATH=$PATH:/home/k/.spicetify
 
 # input mapping
-/usr/bin/setxkbmap -option "caps:escape"
+if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
+  /usr/bin/setxkbmap -option "caps:escape"
+fi
 
 # commands to run on start of terminal
 neofetch

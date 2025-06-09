@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
-import png:- | xclip -selection clipboard -t image/png
-notify-send "Screenshot copied to clipboard"
+
+if [[ $XDG_SESSION_TYPE == "wayland" ]] then
+	hyprshot -m region --clipboard-only
+else
+	import png:- | xclip -selection clipboard -t image/png
+	notify-send "Screenshot copied to clipboard"
+fi

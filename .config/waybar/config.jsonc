@@ -1,0 +1,107 @@
+{
+	"layer": "top", // Waybar at top layer
+	"position": "top", // Waybar position (top|bottom|left|right)
+	// "width": 1280, // Waybar width
+	// Choose the order of the modules
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["network", "pulseaudio", "battery", "clock", "tray", "custom/lock", "custom/power", ],
+
+	"hyprland/window": {
+		"max-length": 40
+	},
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"sort-by-name": true,
+		"format": " {icon} ",
+		"format-icons": {
+			"default": "",
+		},
+	},
+	"tray": {
+		"icon-size": 21,
+		"spacing": 10
+	},
+	"custom/music": {
+		"format": "  {}",
+		"escape": true,
+		"interval": 5,
+		"tooltip": false,
+		"exec": "playerctl metadata --format='{{ title }}'",
+		"on-click": "playerctl play-pause",
+		"max-length": 50
+	},
+	"clock": {
+		"timezone": "UnitedStates/Eastern",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": " {:%d/%m/%Y}",
+		"format": " {:%H:%M}"
+	},
+	"network": {
+		"format-wifi" : "{icon}",
+		"format-icons": [" 󰤯","󰤟","󰤢","󰤥","󰤨"],
+		"format-ethernet": "󰀂",
+		"format-alt" : "󱛇",
+		"format-disconnected" : "󰖪",
+		"tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+		"tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+		"tooltip-format-disconnected": "Disconnected",
+		"interval": 5,
+		"nospacing": 1,
+	},
+	"battery": {
+		"format": "{capacity}% {icon}",
+		"format-icons": {
+			"charging": [
+				"󰢜",
+				"󰂆",
+				"󰂇",
+				"󰂈",
+				"󰢝",
+				"󰂉",
+				"󰢞",
+				"󰂊",
+				"󰂋",
+				"󰂅"
+			],
+			"default": [
+				"󰁺",
+				"󰁻",
+				"󰁼",
+				"󰁽",
+				"󰁾",
+				"󰁿",
+				"󰂀",
+				"󰂁",
+				"󰂂",
+				"󰁹"
+			]
+		},
+		"format-full": "{icon}",
+		"interval": 5,
+		"states": {
+			"warning": 20,
+			"critical": 10
+		},
+		"tooltip": false
+	},
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{icon} {volume}%",
+		"format-muted": "",
+		"format-icons": {
+			"default": ["", "", " "]
+		},
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+	},
+	"custom/lock": {
+		"tooltip": false,
+		"on-click": "sh -c 'hyprlock' & disown",
+		"format": "",
+	},
+	"custom/power": {
+		"tooltip": false,
+		"on-click": "wlogout &",
+		"format": "襤"
+	}
+}
