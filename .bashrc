@@ -142,7 +142,7 @@ if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
 fi
 
 # commands to run on start of terminal
-neofetch
+fastfetch
 eval "$(zoxide init bash)"
 
 # update variables

@@ -3,7 +3,7 @@
 * {
 	font-family: Hack Nerd Font;
 	font-weight: 800;
-	font-size: 17px;
+	font-size: 16px;
 	min-height: 0;
 }
 
@@ -38,7 +38,7 @@
 
 #network{
 	color:@blue;
-	border-radius: 1rem;
+	border-radius: 0px 1rem 1rem 0px;
 }
 
 #custom-music,
@@ -57,9 +57,8 @@
 }
 
 #clock {
-	color: @peach;
-	border-radius: 0px 1rem 1rem 0px;
-	margin-right: 1rem;
+	color: @yellow;
+	border-radius: 1rem
 }
 
 #battery {
@@ -103,6 +102,10 @@
 	margin-right: 1rem;
 	border-radius: 0px 1rem 1rem 0px;
 	color: @red;
+}
+
+#network{
+	margin-right: 1rem;
 }
 
 #tray {

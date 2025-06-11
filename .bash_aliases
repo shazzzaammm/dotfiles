@@ -1,7 +1,4 @@
-alias fzfcd="cd \"\$(find ~/Documents/ -type d | fzf)\""
 alias cb="xclip -selection clipboard"
-alias yt="ytfzf"
-alias nvimconfig="nvim ~/.config/nvim/init.lua"
 alias lock="betterlockscreen -l"
 alias cd="z"
 alias cat="bat"

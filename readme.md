@@ -12,20 +12,16 @@
 Honestly 99% of every theme i have is catppuccin macchiato or mocha, so if you want something similar for an app check [the catppuccin page](https://github.com/catppuccin/catppuccin) and yoink the colors from there :3
 
 # Stuff
-- Awesomewm
 - Hyprland
 - waybar
 - wlogout
 - mako
 - Better Discord
-- Better Lockscreen
 - Bottom
 - Cava
 - Kitty 
-- Neofetch
+- FastFetch
 - Neovim
-- Nitrogen
-- Picom
 - Rofi
 - Spicetify
 - Yazi
@@ -36,4 +32,4 @@ Honestly 99% of every theme i have is catppuccin macchiato or mocha, so if you w
 - Bash scripts that i use
 
 # Todo
-- Seperate rc.lua to be more modular
+- Sreenshots of hyprland
