@@ -5,14 +5,18 @@
 ![Spotify with Cava](./Screenshots/music.png)
 ![Stuff](./Screenshots/stuff.png)
 ![Rofi](./Screenshots/rofi.png)
+![Desktop](./Screenshots/desktop.png)
 
 </details>
 
 # Description
-Honestly 99% of every theme i have is catppuccin macchiato or mocha, so if you want something similar for an app check [the catppuccin page](https://github.com/catppuccin/catppuccin) and yoink the colors from there :3
+Honestly 99% of the themes i use are catppuccin mocha or macchiato, so if you want something similar for something, check [the catppuccin page](https://github.com/catppuccin/catppuccin) and yoink the colors from there :3
 
 # Stuff
 - Hyprland
+- Hyprlock
+- Hypridle
+- Hyprpaper
 - waybar
 - wlogout
 - mako
@@ -32,4 +36,4 @@ Honestly 99% of every theme i have is catppuccin macchiato or mocha, so if you w
 - Bash scripts that i use
 
 # Todo
-- Sreenshots of hyprland
+- think of something to put on this list

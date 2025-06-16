@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ $XDG_SESSION_TYPE == "wayland" ]] then
-	hyprshot -m region --clipboard-only
+	hyprshot -m region -z --clipboard-only
+	#hyprshot -m region -z -o ~/dotfiles/Screenshots/
 else
 	import png:- | xclip -selection clipboard -t image/png
 	notify-send "Screenshot copied to clipboard"

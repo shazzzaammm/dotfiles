@@ -1,6 +1,7 @@
 alias cb="xclip -selection clipboard"
 alias lock="betterlockscreen -l"
 alias cd="z"
-alias cat="bat"
+#alias cat="bat"
 alias glow="glow -s /home/k/.config/glow/themes/catppuccin-macchiato.json"
 alias tt="tt --theme catppuccin -n 20"
+alias neofetch="fastfetch"
