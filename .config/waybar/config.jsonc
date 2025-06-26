@@ -5,7 +5,6 @@
 	// Choose the order of the modules
 	"modules-left": ["hyprland/workspaces"],
 	"modules-center": ["hyprland/window"],
-	// "modules-right": ["network", "pulseaudio", "battery", "clock", "tray", "custom/lock", "custom/power", ],
 	"modules-right": ["clock", "pulseaudio", "battery", "network", "tray", "custom/lock", "custom/power", ],
 
 	"hyprland/window": {
@@ -35,8 +34,8 @@
 	"clock": {
 		"timezone": "UnitedStates/Eastern",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-		"format-alt": " {:%d/%m/%Y}",
-		"format": " {:%H:%M}"
+		"format-alt": "🗓 {:%d/%m/%Y}",
+		"format": "⏱ {:%H:%M}"
 	},
 	"network": {
 		"format-wifi" : "{icon}",
@@ -84,7 +83,7 @@
 			"warning": 20,
 			"critical": 10
 		},
-		"tooltip": false
+		"tooltip": true
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float

@@ -112,3 +112,13 @@
 	margin-right: 1rem;
 	border-radius: 1rem;
 }
+
+tooltip {
+	color: @text;
+	background-color: @base;
+	text-shadow: none;
+	border: solid 2px @mauve;
+}
+
+tooltip label{
+}
